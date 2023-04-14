@@ -73,7 +73,7 @@ Service = Service(executable_path=path)
 driver = webdriver.Chrome(service=Service, chrome_options=chromeOptions)
 wait = WebDriverWait(driver, 10)
 # driver.maximize_window()
-# driver.minimize_window()
+driver.minimize_window()
 
 with open("Credenciales.txt", mode="r") as archivo:
     credenciales = archivo.readline().strip().split(",")
