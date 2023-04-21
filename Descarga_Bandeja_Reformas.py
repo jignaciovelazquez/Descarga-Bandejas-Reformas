@@ -32,6 +32,8 @@ def Bandejas():
     time.sleep(1)
     driver.get("https://moica2.telecentro.net.ar/home.php")
     time.sleep(1)
+    """
+    #--------- los de sistemas cambiaron el elemento a un datalist y ya no podia acceder como en un dropdown--------
     # -------------------- Bandeja General ----------------------------
     dropdwn = driver.find_element(
         By.XPATH, '//*[@id="SECTOR-SELECT"]')           # Sector
@@ -41,6 +43,14 @@ def Bandejas():
     wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//*[@id="BT-LIST-6324b5691d2eef081b091b6d"]'))).click()   # Selecciona la opcion Diseño de red/-Edificios FTTH
     time.sleep(1)
+    """
+
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '//*[@id="SECTOR-SELECT"]'))).send_keys("Diseño red - Edificios FTTH")
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '//*[@id="SECTOR-SELECT"]'))).send_keys(Keys.RETURN)
+    time.sleep(1)
+
     wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//*[@id="pager_TktsSector_left"]/table/tbody/tr/td[2]/div/span'))).click()  # Boton de descarga
     time.sleep(1)
@@ -73,7 +83,7 @@ Service = Service(executable_path=path)
 driver = webdriver.Chrome(service=Service, chrome_options=chromeOptions)
 wait = WebDriverWait(driver, 10)
 # driver.maximize_window()
-driver.minimize_window()
+# driver.minimize_window()
 
 with open("Credenciales.txt", mode="r") as archivo:
     credenciales = archivo.readline().strip().split(",")
