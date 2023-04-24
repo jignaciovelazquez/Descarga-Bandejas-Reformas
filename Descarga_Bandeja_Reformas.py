@@ -1,14 +1,24 @@
-import time
-import os
-import pandas as pd
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
+import subprocess
+import sys
+
+try:
+    import pandas
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pandas"])
+    import pandas
+
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium import webdriver
+import pandas as pd
+import os
+import time
+
 
 # -------------------------------------------- Funciones ------------------------------------
 
@@ -43,6 +53,8 @@ def Bandejas():
     wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//*[@id="BT-LIST-6324b5691d2eef081b091b6d"]'))).click()   # Selecciona la opcion Diseño de red/-Edificios FTTH
     time.sleep(1)
+
+    
     """
 
     wait.until(EC.element_to_be_clickable(
